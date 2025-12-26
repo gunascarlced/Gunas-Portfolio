@@ -1,0 +1,33 @@
+IDs
+    home
+    about
+    skills
+    projects
+    contact
+
+Classes
+    Header / Navigation
+        header
+        logo
+        navbar
+        active
+    Home Section
+        home
+        btn
+        portrait
+    About Section
+        about
+    Skills Section
+        skills
+    Projects Section
+        projects
+        projects-grid
+        project-card
+    Contact Section
+        contact
+        text-highlight
+    Footer
+        footer-main
+        footer-center
+        bottom
+        back-top
