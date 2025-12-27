@@ -1,3 +1,6 @@
+git push command:
+git add . ; git commit -m "update" ; git push
+
 IDs
     home
     about
