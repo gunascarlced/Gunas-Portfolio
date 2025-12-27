@@ -51,6 +51,11 @@ body {
     text-decoration: none;
     letter-spacing: 2px;
 }
+.iconA {
+    width: 5%;
+    height: auto;
+}
+
 
 /* NAVIGATION BAR */
 .navbar a {
