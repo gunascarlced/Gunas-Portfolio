@@ -50,12 +50,7 @@ body {
     text-shadow: var(--glow);
     text-decoration: none;
     letter-spacing: 2px;
-}
-.iconA {
-    width: 5px;
-    height: 5px;
-}
-
+}z
 
 /* NAVIGATION BAR */
 .navbar a {
