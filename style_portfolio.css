@@ -50,7 +50,7 @@ body {
     text-shadow: var(--glow);
     text-decoration: none;
     letter-spacing: 2px;
-}z
+}
 
 /* NAVIGATION BAR */
 .navbar a {
@@ -149,7 +149,7 @@ body {
     height: 600px;
     margin-left: 650px;
     position: absolute;
-    margin-top: 100px;
+    margin-top: 90px;
 }
 
 /* ABOUT PAGE */
