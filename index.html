@@ -14,44 +14,80 @@
 </head>
 
 <body>
+    <div class="grid-bg"></div>
+    <div class="hover-blur" id="cursor-blur"></div>
     <!-- TOP WINDOW -->
     <header class="header">
-        <a href="#home" class="logo">© Arkaives</a>
+        <a href="#home" class="logo">© A R K A I V E S</a>
 
         <nav class="navbar">
-            <a href="#home" class="active">Home</a>
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
+            <ul>
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
         </nav>
     </header>
     <main>
         <!-- HOME PAGE -->
         <section id="home" class="home">
-            <h1>Hello I'm</h1>
-            <h2>Carl Cedrick B. Gunas</h2>
-            <h1>Computer Science Student</h1>
-            <p>I don't just write code, I build systems. (Placeholder)</p>
-            <a href="#contact" class="btn">Download CV</a>
-            <img src="portrait.png" alt="My Photo" class="portrait">
+            <div class="home-page">
+                <div class="portrait">
+                    <img src="portrait.png" alt="My Photo">
+                </div>
+
+                <div class="introduction">
+                    <h1>Hello I'm</h1>
+                    <h2>Carl Cedrick B. Gunas</h2>
+                    <h1>I'm a <span id="typing"></span></h1>
+                    <p>I may not be where I want to be yet, but I am no longer where I used to be</p>
+                    <a href="#contact" class="btn">Download CV</a>
+                </div>
+            </div>
         </section>
 
         <!-- ABOUT PAGE -->
         <section id="about" class="about">
-            <div>
-                <h1>ABOUT ME</h1>
-                <p>I’m a Computer Science student with a passion for building clean, efficient, and 
-                    user-focused systems. I enjoy solving problems through code and turning ideas into functional applications.
-                </p>
-                <p>
-                I’m currently expanding my skills in web development and exploring how technology can create impactful solutions.
-                </p>
+            <div class="section-divider" section-name="&lt;System_Persona&gt; // &lt;About Me&gt;"></div>
+            
+            <div class="about-container">
+                <div class="about-content">
+                    <h1 class="about-title">ABOUT ME</h1>
+                    <div class="info-grid">
+                        <div class="about-info-block">
+                            <h2>BRIEF BIO</h2>
+                            <p>I am a first-year Computer Science student and student leader at Cavite State University - Main Campus. Driven by a commitment to service, I am commited to empowering my peers and growing as a leader who leads with purpose and integrity.</p>
+                        </div>
+
+                        <div class="about-info-block">
+                            <h2>BACKGROUND</h2>
+                            <p>My journey began with a simple curiosity about how things are built, evolving from a hobby of observation into a passion for hands-on creation. A pivotal moment occurred during my Senior High School years when I first learned to bring conceptual ideas to life through Arduino hardware. That spark of creation solidified my decision to pursue Computer Science as a profession.</p>
+                        </div>
+
+                        <div class="about-info-block">
+                            <h2>INTERESTS</h2>
+                            <ul>
+                                <li><span class="glow">Continuous Learning:</span> I am constantly seeking new knowledge and enjoy exploring topics from diverse perspectives to broaden my understanding.</li>
+                                <li><span class="glow">Literature & Writing:</span> I have a deep appreciation for the written word, spending my free time crafting exquisite literature as a creative outlet.</li>
+                                <li><span class="glow">Analytical Reading:</span> I enjoy diving into books that challenge my thinking and offer fresh insights into the world.</li>
+                                <li><span class="glow">Exploration:</span> Beyond the classroom, I remain an enthusiast for emerging technologies and system architectures.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-portrait">
+                    <img src="portrait.png" alt="Carl Cedrick B. Gunas">
+                    <div class="portrait-overlay"></div>
+                </div>
             </div>
         </section>
 
         <!-- SKILLS PAGE -->
         <section id="skills" class="skills">
+            <div class="section-divider" section-name="&lt;Core_Capabilities&gt; // &lt;Skills&gt;"></div>
             <div>
                 <h1>SKILLS</h1>
                 <p>Showcasing a collection of designs, UI concepts, and systems I’ve built or contributed to.</p>
@@ -64,33 +100,116 @@
 
         <!-- PROJECTS PAGE -->
         <section id="projects" class="projects">
+            <div class="section-divider" section-name="<Archive_Logs> // <Projects>"></div>
             <h1>PROJECTS</h1>
 
             <div class="projects-grid">
-
                 <div class="project-card">
-                    <h2>TaskFlow</h2>
-                    <p>A workflow automation system with built-in reminders and team syncing.</p>
-                    <a href="link">See Project</a>
-                </div>
+                    <div class="project-visual">
+                        <img src="projects/project1.png" alt="Project">
+                        <div class="project-overlay">
+                            <h2>RFID Locking System</h2>
+                            <a href="#" class="project-link">🔗 View Logs</a>
+                        </div>
+                    </div>
 
+                    <div class="tech-stack">
+                        <div class="tech-item">
+                            <img src="https://skillicons.dev/icons?i=cpp" alt="C++">
+                            <span>C++</span>
+                        </div>
+                        <div class="tech-item">
+                            <img src="https://skillicons.dev/icons?i=arduino" alt="Arduino">
+                            <span>Arduino</span>
+                        </div>
+                    </div>
+                </div>
                 <div class="project-card">
-                    <h2>CipherGuard</h2>
-                    <p>A basic encryption tool focused on securing small data files.</p>
-                    <a href="link">See Project</a>
-                </div>
+                    <div class="project-visual">
+                        <img src="projects/project1.png" alt="Project">
+                        <div class="project-overlay">
+                            <h2>RFID Locking System</h2>
+                            <a href="#" class="project-link">🔗 View Logs</a>
+                        </div>
+                    </div>
 
+                    <div class="tech-stack">
+                        <div class="tech-item">
+                            <img src="https://skillicons.dev/icons?i=cpp" alt="C++">
+                            <span>C++</span>
+                        </div>
+                        <div class="tech-item">
+                            <img src="https://skillicons.dev/icons?i=arduino" alt="Arduino">
+                            <span>Arduino</span>
+                        </div>
+                    </div>
+                </div>
                 <div class="project-card">
-                    <h2>Nebula Web Engine</h2>
-                    <p>A simple front-end framework built for fast prototyping.</p>
-                    <a href="https://www.youtube.com/watch?v=G3e-cpL7ofc">See Project</a>
-                </div>
+                    <div class="project-visual">
+                        <img src="projects/project1.png" alt="Project">
+                        <div class="project-overlay">
+                            <h2>RFID Locking System</h2>
+                            <a href="#" class="project-link">🔗 View Logs</a>
+                        </div>
+                    </div>
 
+                    <div class="tech-stack">
+                        <div class="tech-item">
+                            <img src="https://skillicons.dev/icons?i=cpp" alt="C++">
+                            <span>C++</span>
+                        </div>
+                        <div class="tech-item">
+                            <img src="https://skillicons.dev/icons?i=arduino" alt="Arduino">
+                            <span>Arduino</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-visual">
+                        <img src="projects/project1.png" alt="Project">
+                        <div class="project-overlay">
+                            <h2>RFID Locking System</h2>
+                            <a href="#" class="project-link">🔗 View Logs</a>
+                        </div>
+                    </div>
+
+                    <div class="tech-stack">
+                        <div class="tech-item">
+                            <img src="https://skillicons.dev/icons?i=cpp" alt="C++">
+                            <span>C++</span>
+                        </div>
+                        <div class="tech-item">
+                            <img src="https://skillicons.dev/icons?i=arduino" alt="Arduino">
+                            <span>Arduino</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-visual">
+                        <img src="projects/project1.png" alt="Project">
+                        <div class="project-overlay">
+                            <h2>RFID Locking System</h2>
+                            <a href="#" class="project-link">🔗 View Logs</a>
+                        </div>
+                    </div>
+
+                    <div class="tech-stack">
+                        <div class="tech-item">
+                            <img src="https://skillicons.dev/icons?i=cpp" alt="C++">
+                            <span>C++</span>
+                        </div>
+                        <div class="tech-item">
+                            <img src="https://skillicons.dev/icons?i=arduino" alt="Arduino">
+                            <span>Arduino</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- CONTACT PAGE -->
         <section id="contact" class="contact">
+            <div class="section-divider" section-name="&lt;Signal_Transmit&gt; // &lt;Contacts&gt;"></div>
             <div>
                 <h1>CONTACT</h1>
                 <p>
@@ -141,6 +260,7 @@
         <a href="#home" class="back-top">Back to top ↑</a>
     </footer>
 
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
     <script src="script_portfolio.js"></script>
 </body>
 </html>
