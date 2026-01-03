@@ -298,7 +298,6 @@ body {
     flex-direction: column;
     justify-content: center;
     background: rgba(0, 0, 0, 0.25);
-    font-family: var(--Orbitron);
     position: relative;
     overflow: visible; /* Allows the content to expand naturally */
 }
@@ -320,6 +319,7 @@ body {
 }
 
 .about-title {
+    font-family: var(--Orbitron);
     font-size: 3rem;
     color: var(--cyber-purple);
     text-shadow: var(--glow);
@@ -362,6 +362,7 @@ body {
 }
 
 .about-info-block {
+    font-family: 'Share Tech Mono', monospace;
     padding: 20px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
@@ -406,26 +407,93 @@ body {
 
 /* SKILLS PAGE */
 .skills {
-    height: 100vh;
-    padding: 0 10%;
+    min-height: 100vh;
+    padding: 100px 10%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     background: transparent !important;
-    font-family: var(--Orbitron);
 }
 
-.skills h1 {
-    font-size: 2.8rem;
+.skills-container {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    width: 100%;
+    margin-top: 30px;
+}
+
+/* THE SKILLS BOXES */
+.skills-box {
+    flex: 1;
+    background: rgba(180, 0, 255, 0.03); /* Matching header transparency */
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(180, 0, 255, 0.2);
+    padding: 35px;
+    border-radius: 4px; /* Sharper corners for cyberpunk look */
+    position: relative;
+    transition: all 0.4s ease;
+    /* The Cyberpunk Corner Cut Effect */
+    clip-path: polygon(0 0, 95% 0, 100% 5%, 100% 100%, 5% 100%, 0 95%);
+}
+
+.skills-box:hover {
+    border-color: var(--cyber-purple);
+    box-shadow: 0 0 20px rgba(180, 0, 255, 0.15);
+    background: rgba(180, 0, 255, 0.07);
+    transform: translateY(-5px);
+}
+
+.skills-header {
+    font-family: var(--Orbitron);
+    color: var(--cyber-purple);
+    font-size: 1.4rem;
+    margin-bottom: 30px;
+    text-shadow: var(--glow);
+    letter-spacing: 2px;
+}
+
+/* SKILL ITEMS LIST */
+.skills-list {
+    font-family: 'Share Tech Mono', monospace;
+}
+
+.skill-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(180, 0, 255, 0.1);
+    transition: 0.3s;
+}
+
+.skill-item:hover {
+    padding-left: 10px;
+    background: rgba(180, 0, 255, 0.05);
+}
+
+.skill-name {
+    color: #e0e0ff;
+    font-size: 1.1rem;
+}
+
+.mastery-status {
+    text-align: right;
+}
+
+.mastery-stars {
     color: var(--cyber-purple);
     text-shadow: var(--glow);
+    display: block;
+    font-size: 1rem;
+    letter-spacing: 2px;
 }
 
-.skills p {
-    font-size: 1.2rem;
-    max-width: 850px;
-    opacity: 0.85;
-    margin-bottom: 20px;
+.mastery-label {
+    color: rgba(224, 224, 255, 0.5);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 /* PROJECTS PAGE */
@@ -435,7 +503,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    background: transparent !important;
+    background: rgba(0, 0, 0, 0.25);
     font-family: var(--Orbitron);
 }
 
@@ -605,37 +673,220 @@ body {
 /* CONTACTS PAGE */
 .contact {
     height: 100vh;
-    padding: 0 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Keep divider at top */
+    background: transparent !important;
+    font-family: var(--Orbitron);
+    perspective: 1500px;
+}
+
+.card-wrapper {
+    flex-grow: 1; /* Takes up remaining space */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centers card vertically in the section */
+    align-items: center;
+}
+
+/* Flip Logic */
+.flip-card {
+    background-color: transparent;
+    width: 600px;
+    height: 340px;
+    perspective: 1000px;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    border: 1px solid rgba(188, 19, 254, 0.4);
+    background: rgba(10, 10, 15, 0.9);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: transparent !important;
-    font-family: var(--Orbitron);
+    align-items: center;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(188, 19, 254, 0.1);
 }
 
-.contact h1 {
-    font-size: 2.5rem;
-    color: var(--cyber-purple);
-    text-shadow: var(--glow);
+/* Front Styling */
+.card-front {
+    color: white;
 }
 
-.contact p {
-    font-size: 1.2rem;
-    max-width: 800px;
-    opacity: 0.85;
+.logo-container {
+    width: 120px;
+    height: 120px;
+    border: 2px solid var(--cyber-purple);
+    border-radius: 50%;
+    padding: 5px;
+    box-shadow: var(--glow);
     margin-bottom: 20px;
 }
 
-.text-highlight {
-    color: var(--cyber-purple);
-    text-shadow: var(--glow);
-    text-decoration: none;
+.brand-logo {
+    width: 100%;
+    border-radius: 50%;
 }
 
-.text-highlight:hover {
+.brand-name {
+    font-size: 2rem;
+    letter-spacing: 6px;
+    margin-bottom: 5px;
+}
+
+.brand-tagline {
+    font-size: 0.7rem;
+    color: var(--cyber-purple);
+    letter-spacing: 2px;
+}
+
+/* Back Styling */
+.card-back {
+    transform: rotateY(180deg);
+    display: grid !important;
+    grid-template-columns: 1.5fr 1fr; /* 60% : 40% ratio */
+    padding: 0 !important;
+    overflow: hidden;
+    align-items: stretch !important;
+}
+
+/* Left Section (60%) */
+.back-left {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: left;
+    border-right: 1px solid rgba(188, 19, 254, 0.2);
+}
+
+.name {
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    margin: 0;
     color: white;
-    text-shadow: 0 0 10px white;
+}
+
+.position {
+    font-size: 0.65rem;
+    color: var(--cyber-purple);
+    margin-top: 5px;
+    letter-spacing: 1px;
+}
+
+/* The Vanishing Line */
+.vanishing-line {
+    width: 100%;
+    height: 1px;
+    margin: 20px 0;
+    background: linear-gradient(90deg, 
+        var(--cyber-purple) 0%, 
+        rgba(188, 19, 254, 0) 100%);
+}
+
+.contact-details .detail-item {
+    margin-bottom: 15px;
+}
+
+.contact-details small {
+    display: block;
+    font-size: 0.55rem;
+    opacity: 0.5;
+    letter-spacing: 2px;
+}
+
+.contact-details a, .contact-details span {
+    font-size: 0.9rem;
+    color: white;
+    text-decoration: none;
     cursor: pointer;
+}
+
+/* Social Bar */
+.social-bar {
+    display: flex;
+    background: rgba(188, 19, 254, 0.1);
+    border: 1px solid rgba(188, 19, 254, 0.3);
+    padding: 5px;
+    gap: 10px;
+}
+
+.social-bar a {
+    flex: 1;
+    text-align: center;
+    font-size: 0.7rem;
+    color: white;
+    text-decoration: none;
+    padding: 5px 0;
+    transition: 0.3s;
+}
+
+.social-bar a:hover {
+    background: var(--cyber-purple);
+    color: black;
+}
+
+/* Right Section (40%) */
+.back-right {
+    background: rgba(188, 19, 254, 0.03);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.mini-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    filter: drop-shadow(0 0 10px var(--cyber-purple));
+    margin-bottom: 15px;
+}
+
+.mini-brand {
+    font-size: 1rem;
+    letter-spacing: 4px;
+    opacity: 0.8;
+}
+
+/* Shared Scanner Line (applied to both sides) */
+.scanner-line {
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background: rgba(188, 19, 254, 0.4);
+    box-shadow: 0 0 15px var(--cyber-purple);
+    z-index: 10;
+    pointer-events: none;
+    animation: scanMove 4s linear infinite;
+}
+
+@keyframes scanMove {
+    0% { top: -5%; }
+    100% { top: 105%; }
 }
 
 /* BOTTOM WINDOW */
