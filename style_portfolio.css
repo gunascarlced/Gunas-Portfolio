@@ -5,7 +5,7 @@
     font-family: 'Anurati';
     src: url('fonts/Anurati-Regular.otf') format('opentype');
 }
-
+ 
 /*VARIABLES */
 :root {
     --cyber-purple: #b400ff;
@@ -648,7 +648,7 @@ section {
 .tech-stack {
     background: rgba(255, 255, 255, 0.03);
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 15px;
@@ -1033,8 +1033,10 @@ section {
     }
 
     .project-card:hover .tech-stack {
-        flex-direction: row;
+        flex-direction: column;
         flex-wrap: wrap;
+        align-items: baseline;
+        padding-left: 30px;
     }
 
     .project-card:hover .tech-item span {
@@ -1264,44 +1266,141 @@ section {
         display: flex;
     }
 
+    /* ENHANCED MOBILE NAVBAR - FULL WIDTH, AUTO HEIGHT */
     .navbar {
         position: fixed;
         top: 0;
         right: -100%;
-        width: 60%;
-        max-width: 320px;
-        height: 100vh;
-        background: rgba(180, 0, 255, 0.08);
-        backdrop-filter: blur(15px);
-        border-left: 2px solid var(--cyber-purple);
-        box-shadow: -5px 0 30px rgba(180, 0, 255, 0.4);
-        transition: right 0.4s ease;
-        padding: 8rem 2rem 2rem;
+        width: 100vw;
+        height: auto;
+        background: rgba(0, 0, 0, 0.98);
+        backdrop-filter: blur(20px);
+        transition: right 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        padding: 8rem 0 2rem 0;
+        border: none;
+        box-shadow: none;
     }
 
     .navbar.active {
         right: 0;
+        border-left: 3px solid var(--cyber-purple);
+        border-bottom: 3px solid var(--cyber-purple);
+        box-shadow: -10px 0 50px rgba(180, 0, 255, 0.5), 
+                    0 10px 50px rgba(180, 0, 255, 0.5),
+                    inset 0 0 100px rgba(180, 0, 255, 0.1);
+    }
+
+    .navbar::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+            repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(180, 0, 255, 0.05) 2px,
+                rgba(180, 0, 255, 0.05) 4px
+            );
+        pointer-events: none;
+        opacity: 0.5;
     }
 
     .navbar ul {
         flex-direction: column;
         gap: 0;
         width: 100%;
+        padding: 0;
+        position: relative;
+        z-index: 2;
     }
 
     .navbar ul li {
         width: 100%;
+        opacity: 0;
+        transform: translateX(50px);
+        animation: slideInNav 0.5s forwards;
+    }
+
+    .navbar.active ul li:nth-child(1) { animation-delay: 0.1s; }
+    .navbar.active ul li:nth-child(2) { animation-delay: 0.2s; }
+    .navbar.active ul li:nth-child(3) { animation-delay: 0.3s; }
+    .navbar.active ul li:nth-child(4) { animation-delay: 0.4s; }
+    .navbar.active ul li:nth-child(5) { animation-delay: 0.5s; }
+
+    @keyframes slideInNav {
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
     }
 
     .navbar a {
         width: 100%;
-        padding: 1.5rem 1.5rem;
-        clip-path: none;
-        border: none;
-        border-bottom: 1px solid rgba(180, 0, 255, 0.3);
-        background: rgba(180, 0, 255, 0.05);
+        padding: 2rem 3rem;
+        clip-path: polygon(3% 0%, 100% 0%, 97% 100%, 0% 100%);
+        border: 2px solid rgba(180, 0, 255, 0.4);
+        border-bottom: none;
+        background: linear-gradient(
+            90deg,
+            rgba(10, 10, 20, 0.8) 0%,
+            rgba(26, 0, 51, 0.6) 50%,
+            rgba(10, 10, 20, 0.8) 100%
+        );
         text-align: center;
-        font-size: 1.1rem;
+        font-size: 1.4rem;
+        position: relative;
+        overflow: hidden;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+    }
+
+    .navbar a:last-child {
+        border-bottom: 2px solid rgba(180, 0, 255, 0.4);
+    }
+
+    .navbar a::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            90deg, 
+            transparent, 
+            rgba(180, 0, 255, 0.4), 
+            transparent
+        );
+        transition: left 0.6s ease;
+        z-index: -1;
+    }
+
+    .navbar a::after {
+        content: '▶';
+        position: absolute;
+        left: 20px;
+        opacity: 0;
+        transition: all 0.3s ease;
+        color: var(--cyber-purple);
+        font-size: 1.2rem;
+    }
+
+    .navbar a.active::after {
+        opacity: 1;
+        left: 15px;
+    }
+
+    .navbar a:active {
+        transform: scale(0.98);
+        background: rgba(180, 0, 255, 0.2);
+    }
+
+    .navbar a:active::before {
+        left: 100%;
     }
 
     .home, .about, .skills, .projects, .contact {
@@ -1391,8 +1490,10 @@ section {
         height: 18rem;
     }
 
-    .navbar {
-        width: 75%;
+    .navbar a {
+        padding: 1.8rem 2rem;
+        font-size: 1.2rem;
+        letter-spacing: 2px;
     }
 
     .flip-card {
@@ -1420,6 +1521,9 @@ section {
     }
 }
 
+/* ============================================
+   LANDSCAPE MODE OPTIMIZATIONS - FIXED & FROZEN
+   ============================================ */
 @media screen and (min-width: 768px) and (max-width: 1199px) and (orientation: landscape) {
     .home {
         height: auto;
@@ -1432,12 +1536,48 @@ section {
     }
 
     .about-portrait {
-        height: 60vh;
+        height: 55vh;
+        max-width: 350px;
     }
 
+    /* LANDSCAPE CONTACT CARD - FROZEN BACK VIEW ONLY */
     .flip-card {
-        height: auto;
-        min-height: 50rem;
+        width: min(85vw, 60rem);
+        height: fit-content;
+        max-height: 70vh;
+    }
+
+    .flip-card-inner {
+        height: fit-content;
+        transform: rotateY(180deg) !important;
+        cursor: default !important;
+        pointer-events: none;
+    }
+
+    .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg) !important;
+    }
+
+    .card-front {
+        display: none !important;
+        pointer-events: none !important;
+        visibility: hidden !important;
+    }
+
+    .card-back {
+        position: relative;
+        height: fit-content;
+        overflow: visible;
+        transform: rotateY(0deg) !important;
+        pointer-events: auto;
+    }
+
+    .card-instruction {
+        opacity: 0 !important;
+        pointer-events: none !important;
+        position: absolute !important;
+        visibility: hidden !important;
+        display: none !important;
     }
 
     section {
@@ -1480,18 +1620,73 @@ section {
     }
 
     .about-portrait {
-        height: 40vh;
-        max-width: 300px;
+        height: 50vh;
+        max-width: 250px;
+        position: relative;
     }
 
+    /* LANDSCAPE MOBILE CONTACT CARD - FROZEN BACK VIEW ONLY */
     .flip-card {
-        height: auto;
-        min-height: 40rem;
+        width: min(90vw, 50rem);
+        height: fit-content;
+        max-height: 75vh;
     }
 
+    .flip-card-inner {
+        height: fit-content;
+        transform: rotateY(180deg) !important;
+        cursor: default !important;
+        pointer-events: none;
+    }
+
+    .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg) !important;
+    }
+
+    .card-front {
+        display: none !important;
+        pointer-events: none !important;
+        visibility: hidden !important;
+    }
+
+    .card-back {
+        position: relative;
+        height: fit-content;
+        grid-template-columns: 1fr !important;
+        grid-template-rows: auto auto !important;
+        overflow: visible;
+        padding: 2rem 1.5rem !important;
+        transform: rotateY(0deg) !important;
+        pointer-events: auto;
+    }
+
+    .back-content {
+        border-right: none !important;
+        border-bottom: 1px solid rgba(188, 19, 254, 0.2);
+        padding: 0 0 1.5rem 0 !important;
+    }
+
+    .back-logo {
+        padding: 1.5rem 0 0 0 !important;
+    }
+
+    .card-instruction {
+        opacity: 0 !important;
+        pointer-events: none !important;
+        position: absolute !important;
+        visibility: hidden !important;
+        display: none !important;
+    }
+
+    /* Mobile navbar for landscape */
     .navbar {
-        width: 55%;
-        padding: 5rem 2rem 2rem;
+        height: auto;
+        padding: 6rem 0 2rem 0;
+    }
+
+    .navbar a {
+        padding: 1.5rem 2rem;
+        font-size: 1.2rem;
     }
 }
 
@@ -1507,15 +1702,80 @@ section {
     }
 
     .about-portrait {
-        height: 35vh;
+        height: 45vh;
+        max-width: 200px;
     }
 
+    /* VERY SHORT LANDSCAPE - FROZEN BACK VIEW ONLY */
     .flip-card {
-        min-height: 35rem;
+        width: min(90vw, 50rem);
+        height: fit-content;
+        max-height: 80vh;
+    }
+
+    .flip-card-inner {
+        height: fit-content;
+        transform: rotateY(180deg) !important;
+        cursor: default !important;
+        pointer-events: none;
+    }
+
+    .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg) !important;
+    }
+
+    .card-front {
+        display: none !important;
+        pointer-events: none !important;
+        visibility: hidden !important;
+    }
+
+    .card-back {
+        position: relative;
+        height: fit-content;
+        grid-template-columns: 1fr !important;
+        grid-template-rows: auto auto !important;
+        padding: 1.5rem 1rem !important;
+        overflow: visible;
+        transform: rotateY(0deg) !important;
+        pointer-events: auto;
+    }
+
+    .back-content {
+        border-right: none !important;
+        border-bottom: 1px solid rgba(188, 19, 254, 0.2);
+        padding: 0 0 1rem 0 !important;
+    }
+
+    .back-logo {
+        padding: 1rem 0 0 0 !important;
+    }
+
+    .mini-logo {
+        width: 6rem;
+        height: 6rem;
+    }
+
+    .card-instruction {
+        opacity: 0 !important;
+        pointer-events: none !important;
+        position: absolute !important;
+        visibility: hidden !important;
+        display: none !important;
     }
 
     .skills-box {
         padding: 2rem;
+    }
+
+    .navbar {
+        height: auto;
+        padding: 5rem 0 1.5rem 0;
+    }
+
+    .navbar a {
+        padding: 1.2rem 1.5rem;
+        font-size: 1.1rem;
     }
 }
 

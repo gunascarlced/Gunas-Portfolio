@@ -1,0 +1,111 @@
+<header class="header">
+    <a href="#home" class="logo">© A R K A I V E S</a>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 2rem 10%;
+    background: rgba(180, 0, 255, 0.08);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--cyber-purple);
+    box-shadow: 0 0 20px rgba(180, 0, 255, 0.25);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* TOP LEFT TEXT */
+.logo {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--cyber-purple);
+    text-shadow: var(--glow);
+    text-decoration: none;
+    letter-spacing: 2px;
+    font-family: Anurati;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+}
+
+.navbar a {
+    position: relative;
+    color: #ecd8ff;
+    text-decoration: none;
+    padding: 0.8rem 2rem;
+    font-family: var(--orbitron);
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    display: inline-block;
+
+    clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+    overflow: hidden;
+    border: 1px solid rgba(180, 0, 255, 0.3);
+    background: rgba(180, 0, 255, 0.05);
+}
+
+.navbar a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg, 
+        transparent, 
+        rgba(180, 0, 255, 0.4), 
+        transparent
+    );
+    transition: left 0.5s ease;
+    z-index: 1;
+}
+
+.navbar a:hover {
+    color: #fff;
+    background: rgba(180, 0, 255, 0.2);
+    border-color: var(--cyber-purple);
+    box-shadow: var(--glow);
+    transform: translateY(-2px);
+}
+
+.navbar a:hover::before {
+    left: 100%;
+}
+
+.navbar a.active {
+    background: var(--cyber-purple);
+    color: #000;
+    font-weight: 700;
+    box-shadow: var(--glow);
+    border-color: var(--cyber-purple);
+}
+
+window.history.scrollRestoration = "manual";
+
+window.addEventListener("load", () => {
+    setTimeout(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }, 50); 
+});
