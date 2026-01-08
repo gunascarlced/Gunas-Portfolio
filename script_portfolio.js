@@ -135,17 +135,17 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ----------------------------------------------------
-// CONTACT CARD FLIP & INSTRUCTION HANDLER
+// CONTACT CARD FLIP & INSTRUCTION HANDLER - FIXED
 // ----------------------------------------------------
 document.addEventListener('DOMContentLoaded', function() {
     const flipCard = document.querySelector('.flip-card');
     const flipCardInner = document.querySelector('.flip-card-inner');
     const cardInstruction = document.getElementById('cardInstruction');
     
-    // Check if device is touch-only (no hover support)
-    const isTouchDevice = !window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    // Check if device supports hover
+    const supportsHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
     
-    if (isTouchDevice) {
+    if (!supportsHover) {
         // TOUCH DEVICE MODE - Click to flip
         let isFlipped = false;
         
@@ -155,23 +155,36 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         if (flipCard && flipCardInner && cardInstruction) {
+            // Prevent default hover behavior
+            flipCard.style.pointerEvents = 'auto';
+            
+            // Handle click/tap
             flipCard.addEventListener('click', function(e) {
-                // Prevent link clicks from flipping
-                if (e.target.tagName !== 'A') {
-                    flipCardInner.classList.toggle('flipped');
-                    isFlipped = !isFlipped;
-                    
-                    // Update instruction based on state
-                    if (isFlipped) {
-                        cardInstruction.textContent = '_CLICK_TO_ENCRYPT_';
-                    } else {
-                        cardInstruction.textContent = '_CLICK_TO_DECRYPT_';
-                    }
+                // Allow links to work normally
+                if (e.target.tagName === 'A' || e.target.closest('a')) {
+                    return;
+                }
+                
+                // Prevent event bubbling
+                e.stopPropagation();
+                
+                // Toggle flip state
+                isFlipped = !isFlipped;
+                
+                if (isFlipped) {
+                    flipCardInner.style.transform = 'rotateY(180deg)';
+                    cardInstruction.textContent = '_CLICK_TO_ENCRYPT_';
+                } else {
+                    flipCardInner.style.transform = 'rotateY(0deg)';
+                    cardInstruction.textContent = '_CLICK_TO_DECRYPT_';
                 }
             });
+            
+            // Ensure the card starts unflipped
+            flipCardInner.style.transform = 'rotateY(0deg)';
         }
     } else {
-        // HOVER DEVICE MODE - Hover to flip
+        // HOVER DEVICE MODE - Hover to flip (CSS handles this)
         
         // Set initial instruction
         if (cardInstruction) {
@@ -179,29 +192,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         if (flipCard && cardInstruction) {
-            // Using mouseenter and mouseleave for better control
+            // Update instruction on hover
             flipCard.addEventListener('mouseenter', function() {
                 cardInstruction.textContent = '_UNHOVER_TO_ENCRYPT_';
             });
             
             flipCard.addEventListener('mouseleave', function() {
                 cardInstruction.textContent = '_HOVER_TO_DECRYPT_';
-            });
-            
-            // Also handle when mouse moves within the card
-            flipCard.addEventListener('mousemove', function(e) {
-                // Check if we're still inside the card
-                const rect = flipCard.getBoundingClientRect();
-                const isInside = (
-                    e.clientX >= rect.left &&
-                    e.clientX <= rect.right &&
-                    e.clientY >= rect.top &&
-                    e.clientY <= rect.bottom
-                );
-                
-                if (isInside) {
-                    cardInstruction.textContent = '_UNHOVER_TO_ENCRYPT_';
-                }
             });
         }
     }
@@ -259,23 +256,21 @@ window.addEventListener('resize', function() {
     // Reset card flip on resize
     const flipCardInner = document.querySelector('.flip-card-inner');
     const cardInstruction = document.getElementById('cardInstruction');
+    const supportsHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
     
-    if (flipCardInner && window.innerWidth > 767) {
-        flipCardInner.classList.remove('flipped');
-        
-        // Update instruction based on device capability
-        const isTouchDevice = !window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-        if (isTouchDevice) {
+    if (flipCardInner && cardInstruction) {
+        // Reset to initial state
+        if (!supportsHover) {
+            flipCardInner.style.transform = 'rotateY(0deg)';
             cardInstruction.textContent = '_CLICK_TO_DECRYPT_';
         } else {
+            flipCardInner.style.transform = '';
             cardInstruction.textContent = '_HOVER_TO_DECRYPT_';
         }
     }
 });
 
-// ----------------------------------------------------
 // SMOOTH SCROLL FOR ANCHOR LINKS
-// ----------------------------------------------------
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         const href = this.getAttribute('href');

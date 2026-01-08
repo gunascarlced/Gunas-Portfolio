@@ -41,6 +41,7 @@ body {
     position: relative;
     font-size: var(--base-font-size);
     font-family: var(--orbitron);
+    min-width: 320px;
 }
 
 /* GRID BACKGROUND */
@@ -55,7 +56,7 @@ body {
         linear-gradient(90deg, rgba(0, 240, 255, 0.1) 1px, transparent 1px);
     background-size: var(--grid-size) var(--grid-size);
     pointer-events: none;
-    z-index: -1;
+    z-index: 1;
     opacity: 0.3;
 }
 
@@ -91,7 +92,7 @@ body {
     );
     filter: blur(60px);
     pointer-events: none;
-    z-index: -2;
+    z-index: 1;
     opacity: 0;
     transition: opacity 0.4s ease;
     transform: translate(-50%, -50%);
@@ -276,7 +277,7 @@ section {
    ================================ */
 .home {
     height: 100vh;
-    padding: 0 10%;
+    padding: 0 5%;
     display: flex;
     align-items: center;
     background: transparent !important;
@@ -288,13 +289,15 @@ section {
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    gap: 60px;
+    gap: clamp(30px, 5vw, 60px);
     width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
 }
 
 .portrait {
-    width: 40rem;
-    height: 40rem;
+    width: clamp(25rem, 35vw, 40rem);
+    height: clamp(25rem, 35vw, 40rem);
     border-radius: 50%;
     overflow: hidden;
     flex-shrink: 0;
@@ -364,22 +367,36 @@ section {
    ================================ */
 .about {
     min-height: 100vh;
-    padding: 10rem 10%;
+    padding: 10rem 5%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: rgba(0, 0, 0, 0.25);
     position: relative;
     overflow: visible;
+}
+
+.about::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.25);
+    z-index: 2;
+    pointer-events: none;
 }
 
 .about-container {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    gap: 50px;
+    gap: clamp(30px, 4vw, 50px);
     width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
     position: relative;
+    z-index: 3;
 }
 
 .about-content {
@@ -478,7 +495,7 @@ section {
    ================================ */
 .skills {
     min-height: 100vh;
-    padding: 10rem 10%;
+    padding: 10rem 5%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -488,9 +505,10 @@ section {
 .skills-container {
     display: flex;
     flex-direction: row;
-    gap: 4rem;
+    gap: clamp(2rem, 4vw, 4rem);
     width: 100%;
-    margin-top: 3rem;
+    max-width: 1600px;
+    margin: 3rem auto 0;
 }
 
 .skills-box {
@@ -562,20 +580,34 @@ section {
    ================================ */
 .projects {
     min-height: 100vh;
-    padding: 100px 10% 80px 10%;
+    padding: 100px 5% 80px 5%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    background: rgba(0, 0, 0, 0.25);
     font-family: var(--orbitron);
+}
+
+.projects::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.25);
+    z-index: 1;
+    pointer-events: none;
 }
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    column-gap: 25px;
-    row-gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    column-gap: clamp(20px, 2vw, 25px);
+    row-gap: clamp(20px, 2vw, 25px);
     width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    z-index: 2;
 }
 
 .project-card {
@@ -689,7 +721,7 @@ section {
    ================================ */
 .contact {
     min-height: 100vh;
-    padding: 100px 10% 80px 10%;
+    padding: 100px 5% 80px 5%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -722,25 +754,6 @@ section {
     width: min(60rem, 90vw);
     height: 34rem;
     perspective: 100rem;
-}
-
-@media screen and (min-width: 609px) and (max-width: 1198px) {
-    .flip-card {
-        width: min(55rem, 85vw);
-        height: 32rem;
-    }
-    
-    .card-back {
-        grid-template-columns: 1.3fr 1fr !important;
-    }
-    
-    .back-content {
-        padding: 2.5rem !important;
-    }
-    
-    .back-logo {
-        padding: 2rem !important;
-    }
 }
 
 .flip-card-inner {
@@ -1016,7 +1029,6 @@ section {
         background: rgba(180, 0, 255, 0.05);
     }
 
-    /* PROJECT HOVER EFFECTS */
     .project-card:hover {
         transform: translateY(-5px);
         border-color: var(--cyber-purple);
@@ -1110,13 +1122,7 @@ section {
    RESPONSIVE BREAKPOINTS
    ============================================ */
 
-@media screen and (min-width: 1200px) {
-    :root {
-        --grid-size: 50px;
-        --blur-size: 300px;
-    }
-}
-
+/* Ultra-Wide Screens */
 @media screen and (min-width: 1920px) {
     :root {
         --grid-size: 60px;
@@ -1124,15 +1130,18 @@ section {
     }
 
     .header {
-        padding: 2rem 15%;
+        padding: 2rem 10%;
     }
 
-    .home, .about, .skills, .projects, .contact {
-        padding-left: 15%;
-        padding-right: 15%;
+    .home-page,
+    .about-container,
+    .skills-container,
+    .projects-grid {
+        max-width: 1800px;
     }
 }
 
+/* Tablet / Small Desktop */
 @media screen and (max-width: 1199px) {
     :root {
         --grid-size: 40px;
@@ -1151,13 +1160,8 @@ section {
         padding: 1.2rem 4%;
     }
 
-    .home, .about, .skills, .projects, .contact {
-        padding-left: 6%;
-        padding-right: 6%;
-    }
-
     .projects-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
         gap: 20px;
     }
 
@@ -1170,6 +1174,7 @@ section {
     }
 }
 
+/* Tablet Portrait */
 @media screen and (max-width: 900px) {
     .home-page {
         flex-direction: column;
@@ -1234,6 +1239,7 @@ section {
     }
 }
 
+/* Mobile */
 @media screen and (max-width: 767px) {
     :root {
         --grid-size: 35px;
@@ -1266,7 +1272,6 @@ section {
         display: flex;
     }
 
-    /* ENHANCED MOBILE NAVBAR - FULL WIDTH, AUTO HEIGHT */
     .navbar {
         position: fixed;
         top: 0;
@@ -1471,6 +1476,7 @@ section {
     }
 }
 
+/* Small Mobile */
 @media screen and (max-width: 480px) {
     :root {
         --grid-size: 30px;
@@ -1522,14 +1528,23 @@ section {
 }
 
 /* ============================================
-   LANDSCAPE MODE OPTIMIZATIONS - FIXED & FROZEN
+   LANDSCAPE MODE - ALL DEVICES
    ============================================ */
-@media screen and (min-width: 768px) and (max-width: 1199px) and (orientation: landscape) {
+@media screen and (orientation: landscape) and (max-width: 1199px) {
+    /* Common landscape styles */
     .home {
         height: auto;
         min-height: 100vh;
     }
 
+    section {
+        padding-top: 8rem;
+        padding-bottom: 5rem;
+    }
+}
+
+/* Tablet Landscape Specific */
+@media screen and (min-width: 768px) and (max-width: 1199px) and (orientation: landscape) {
     .portrait {
         width: 25rem;
         height: 25rem;
@@ -1540,52 +1555,13 @@ section {
         max-width: 350px;
     }
 
-    /* LANDSCAPE CONTACT CARD - FROZEN BACK VIEW ONLY */
     .flip-card {
         width: min(85vw, 60rem);
-        height: fit-content;
         max-height: 70vh;
-    }
-
-    .flip-card-inner {
-        height: fit-content;
-        transform: rotateY(180deg) !important;
-        cursor: default !important;
-        pointer-events: none;
-    }
-
-    .flip-card:hover .flip-card-inner {
-        transform: rotateY(180deg) !important;
-    }
-
-    .card-front {
-        display: none !important;
-        pointer-events: none !important;
-        visibility: hidden !important;
-    }
-
-    .card-back {
-        position: relative;
-        height: fit-content;
-        overflow: visible;
-        transform: rotateY(0deg) !important;
-        pointer-events: auto;
-    }
-
-    .card-instruction {
-        opacity: 0 !important;
-        pointer-events: none !important;
-        position: absolute !important;
-        visibility: hidden !important;
-        display: none !important;
-    }
-
-    section {
-        padding-top: 8rem;
-        padding-bottom: 5rem;
     }
 }
 
+/* Mobile Landscape Specific */
 @media screen and (max-width: 767px) and (orientation: landscape) {
     :root {
         --grid-size: 30px;
@@ -1604,11 +1580,6 @@ section {
         padding: 6rem 4% 4rem;
     }
 
-    .home {
-        height: auto;
-        min-height: 100vh;
-    }
-
     .home-page {
         flex-direction: row;
         gap: 20px;
@@ -1625,39 +1596,15 @@ section {
         position: relative;
     }
 
-    /* LANDSCAPE MOBILE CONTACT CARD - FROZEN BACK VIEW ONLY */
     .flip-card {
         width: min(90vw, 50rem);
-        height: fit-content;
         max-height: 75vh;
     }
 
-    .flip-card-inner {
-        height: fit-content;
-        transform: rotateY(180deg) !important;
-        cursor: default !important;
-        pointer-events: none;
-    }
-
-    .flip-card:hover .flip-card-inner {
-        transform: rotateY(180deg) !important;
-    }
-
-    .card-front {
-        display: none !important;
-        pointer-events: none !important;
-        visibility: hidden !important;
-    }
-
     .card-back {
-        position: relative;
-        height: fit-content;
         grid-template-columns: 1fr !important;
         grid-template-rows: auto auto !important;
-        overflow: visible;
         padding: 2rem 1.5rem !important;
-        transform: rotateY(0deg) !important;
-        pointer-events: auto;
     }
 
     .back-content {
@@ -1670,15 +1617,6 @@ section {
         padding: 1.5rem 0 0 0 !important;
     }
 
-    .card-instruction {
-        opacity: 0 !important;
-        pointer-events: none !important;
-        position: absolute !important;
-        visibility: hidden !important;
-        display: none !important;
-    }
-
-    /* Mobile navbar for landscape */
     .navbar {
         height: auto;
         padding: 6rem 0 2rem 0;
@@ -1687,100 +1625,5 @@ section {
     .navbar a {
         padding: 1.5rem 2rem;
         font-size: 1.2rem;
-    }
-}
-
-@media screen and (max-height: 500px) and (orientation: landscape) {
-    section {
-        padding-top: 5rem;
-        padding-bottom: 3rem;
-    }
-
-    .portrait {
-        width: 15rem;
-        height: 15rem;
-    }
-
-    .about-portrait {
-        height: 45vh;
-        max-width: 200px;
-    }
-
-    /* VERY SHORT LANDSCAPE - FROZEN BACK VIEW ONLY */
-    .flip-card {
-        width: min(90vw, 50rem);
-        height: fit-content;
-        max-height: 80vh;
-    }
-
-    .flip-card-inner {
-        height: fit-content;
-        transform: rotateY(180deg) !important;
-        cursor: default !important;
-        pointer-events: none;
-    }
-
-    .flip-card:hover .flip-card-inner {
-        transform: rotateY(180deg) !important;
-    }
-
-    .card-front {
-        display: none !important;
-        pointer-events: none !important;
-        visibility: hidden !important;
-    }
-
-    .card-back {
-        position: relative;
-        height: fit-content;
-        grid-template-columns: 1fr !important;
-        grid-template-rows: auto auto !important;
-        padding: 1.5rem 1rem !important;
-        overflow: visible;
-        transform: rotateY(0deg) !important;
-        pointer-events: auto;
-    }
-
-    .back-content {
-        border-right: none !important;
-        border-bottom: 1px solid rgba(188, 19, 254, 0.2);
-        padding: 0 0 1rem 0 !important;
-    }
-
-    .back-logo {
-        padding: 1rem 0 0 0 !important;
-    }
-
-    .mini-logo {
-        width: 6rem;
-        height: 6rem;
-    }
-
-    .card-instruction {
-        opacity: 0 !important;
-        pointer-events: none !important;
-        position: absolute !important;
-        visibility: hidden !important;
-        display: none !important;
-    }
-
-    .skills-box {
-        padding: 2rem;
-    }
-
-    .navbar {
-        height: auto;
-        padding: 5rem 0 1.5rem 0;
-    }
-
-    .navbar a {
-        padding: 1.2rem 1.5rem;
-        font-size: 1.1rem;
-    }
-}
-
-@media screen and (min-resolution: 2dppx) {
-    .grid-bg {
-        background-size: calc(var(--grid-size) * 0.9) calc(var(--grid-size) * 0.9);
     }
 }
