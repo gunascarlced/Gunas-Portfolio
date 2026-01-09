@@ -1,6 +1,4 @@
-// ----------------------------------------------------
 // SMOOTH SCROLL TO TOP ON PAGE RELOAD
-// ----------------------------------------------------
 window.history.scrollRestoration = "manual";
 
 window.addEventListener("load", () => {
@@ -12,9 +10,7 @@ window.addEventListener("load", () => {
     }, 50); 
 });
 
-// ----------------------------------------------------
-// MOBILE MENU TOGGLE
-// ----------------------------------------------------
+// MOBILE HAMBURGER MENU
 const menuToggle = document.getElementById('menuToggle');
 const navbar = document.getElementById('navbar');
 const navLinks = document.querySelectorAll('.nav-link');
@@ -24,7 +20,7 @@ menuToggle.addEventListener('click', () => {
     navbar.classList.toggle('active');
 });
 
-// Close menu when clicking a link
+// AUTO CLOSE MENU
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
         menuToggle.classList.remove('active');
@@ -32,7 +28,6 @@ navLinks.forEach(link => {
     });
 });
 
-// Close menu when clicking outside
 document.addEventListener('click', (e) => {
     if (!navbar.contains(e.target) && !menuToggle.contains(e.target)) {
         menuToggle.classList.remove('active');
@@ -40,13 +35,10 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// ----------------------------------------------------
-// NAVBAR ACTIVE LINK SWITCHING
-// ----------------------------------------------------
+// NAVBAR #ACTIVE CLASS SWITCHING
 document.addEventListener("DOMContentLoaded", () => {
     const sections = document.querySelectorAll("section");
 
-    // Click handler for manual navigation
     navLinks.forEach(link => {
         link.addEventListener("click", () => {
             navLinks.forEach(l => l.classList.remove("active"));
@@ -54,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Auto-highlight navbar while scrolling
+    // AUTO NAVBAR HIGHLIGHT
     window.addEventListener("scroll", () => {
         let scrollPos = window.scrollY + 250;
 
@@ -76,9 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// ----------------------------------------------------
-// HOVER BLUR EFFECT (Desktop Only)
-// ----------------------------------------------------
+// HOVER BLUR EFFECT
 const hoverBlur = document.querySelector('.hover-blur');
 
 // Check if device supports hover
@@ -119,9 +109,7 @@ if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
     animateBlur();
 }
 
-// ----------------------------------------------------
-// TYPED.JS ANIMATION
-// ----------------------------------------------------
+// HOME TYPING ANIMATION
 document.addEventListener('DOMContentLoaded', function() {
     if (typeof Typed !== 'undefined') {
         var typed = new Typed('#typing', {
@@ -134,9 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// ----------------------------------------------------
-// CONTACT CARD FLIP & INSTRUCTION HANDLER - FIXED
-// ----------------------------------------------------
+// CONTACT CARD FLIP
 document.addEventListener('DOMContentLoaded', function() {
     const flipCard = document.querySelector('.flip-card');
     const flipCardInner = document.querySelector('.flip-card-inner');
@@ -155,20 +141,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         if (flipCard && flipCardInner && cardInstruction) {
-            // Prevent default hover behavior
             flipCard.style.pointerEvents = 'auto';
-            
             // Handle click/tap
             flipCard.addEventListener('click', function(e) {
-                // Allow links to work normally
                 if (e.target.tagName === 'A' || e.target.closest('a')) {
                     return;
                 }
-                
-                // Prevent event bubbling
                 e.stopPropagation();
-                
-                // Toggle flip state
+                // flip state
                 isFlipped = !isFlipped;
                 
                 if (isFlipped) {
@@ -184,8 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
             flipCardInner.style.transform = 'rotateY(0deg)';
         }
     } else {
-        // HOVER DEVICE MODE - Hover to flip (CSS handles this)
-        
+        // HOVER DEVICE MODE - hover to flip
         // Set initial instruction
         if (cardInstruction) {
             cardInstruction.textContent = '_HOVER_TO_DECRYPT_';
@@ -204,13 +183,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// ----------------------------------------------------
-// COPY PHONE NUMBER FUNCTION
-// ----------------------------------------------------
+// copy number
 function copyPhone() {
     const phoneNumber = "+63 966 689 3257";
-    
-    // Modern clipboard API
+
     if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(phoneNumber).then(function() {
             alert("Phone Number Copied: " + phoneNumber);
@@ -243,21 +219,20 @@ function fallbackCopyPhone(text) {
     document.body.removeChild(textArea);
 }
 
-// ----------------------------------------------------
 // RESPONSIVE ADJUSTMENTS
-// ----------------------------------------------------
 window.addEventListener('resize', function() {
-    // Close mobile menu on resize to desktop
+    // Close mobile menu on window resize to desktop
     if (window.innerWidth > 767) {
         menuToggle.classList.remove('active');
         navbar.classList.remove('active');
     }
     
-    // Reset card flip on resize
+    // Reset card flip on window resize
     const flipCardInner = document.querySelector('.flip-card-inner');
     const cardInstruction = document.getElementById('cardInstruction');
     const supportsHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
     
+    // cardflip
     if (flipCardInner && cardInstruction) {
         // Reset to initial state
         if (!supportsHover) {
@@ -270,12 +245,11 @@ window.addEventListener('resize', function() {
     }
 });
 
-// SMOOTH SCROLL FOR ANCHOR LINKS
+// SMOOTH SCROLL FOR ANCHOR (NAV) LINKS
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         const href = this.getAttribute('href');
-        
-        // Skip if it's just "#"
+
         if (href === '#') return;
         
         e.preventDefault();

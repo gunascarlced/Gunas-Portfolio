@@ -102,9 +102,7 @@ body {
     opacity: 1;
 }
 
-/* ================================
-   HEADER / NAVBAR
-   ================================ */
+/* HEADER / NAVBAR*/
 .header {
     position: fixed;
     top: 0;
@@ -231,7 +229,6 @@ body {
     transform: rotate(-45deg) translate(8px, -8px);
 }
 
-/* Demo content */
 section {
     min-height: 100vh;
     display: flex;
@@ -272,9 +269,7 @@ section {
     max-width: 80%;
 }
 
-/* ================================
-   HOME PAGE
-   ================================ */
+/* HOME PAGE*/
 .home {
     height: 100vh;
     padding: 0 5%;
@@ -362,9 +357,7 @@ section {
     width: fit-content;
 }
 
-/* ================================
-   ABOUT PAGE
-   ================================ */
+/*  ABOUT PAGE */
 .about {
     min-height: 100vh;
     padding: 10rem 5%;
@@ -490,9 +483,7 @@ section {
     pointer-events: none;
 }
 
-/* ================================
-   SKILLS PAGE
-   ================================ */
+/*  SKILLS PAGE*/
 .skills {
     min-height: 100vh;
     padding: 10rem 5%;
@@ -575,9 +566,7 @@ section {
     letter-spacing: 1px;
 }
 
-/* ================================
-   PROJECTS PAGE - FIXED SIZES
-   ================================ */
+/*   PROJECTS PAGE */
 .projects {
     min-height: 100vh;
     padding: 100px 5% 80px 5%;
@@ -637,7 +626,6 @@ section {
     transition: 0.5s ease;
 }
 
-/* PROJECT OVERLAY */
 .project-overlay {
     position: absolute;
     top: 0;
@@ -676,7 +664,6 @@ section {
     pointer-events: auto;
 }
 
-/* TECH STACK - Default column, hover to row */
 .tech-stack {
     background: rgba(255, 255, 255, 0.03);
     display: flex;
@@ -716,9 +703,7 @@ section {
     transition: all 0.4s ease;
 }
 
-/* ================================
-   CONTACT PAGE
-   ================================ */
+/* CONTACT PAGE */
 .contact {
     min-height: 100vh;
     padding: 100px 5% 80px 5%;
@@ -943,9 +928,7 @@ section {
     100% { top: 105%; }
 }
 
-/* ================================
-   FOOTER
-   ================================ */
+/*  FOOTER */
 .footer-main {
     position: relative;
     background: #05070c;
@@ -984,9 +967,7 @@ section {
     text-shadow: 0 0 50px var(--glow);
 }
 
-/* ============================================
-   HOVER EFFECTS (Desktop only)
-   ============================================ */
+/* HOVER EFFECTS */
 @media (hover: hover) and (pointer: fine) {
     .navbar a:hover {
         color: #fff;
@@ -1080,9 +1061,7 @@ section {
     }
 }
 
-/* ============================================
-   TOUCH DEVICE INTERACTIONS
-   ============================================ */
+/*  TOUCH EFFECTS */
 @media (hover: none) and (pointer: coarse) {
     .hover-blur {
         display: none;
@@ -1118,9 +1097,7 @@ section {
     }
 }
 
-/* ============================================
-   RESPONSIVE BREAKPOINTS
-   ============================================ */
+/* RESPONSIVE */
 
 /* Ultra-Wide Screens */
 @media screen and (min-width: 1920px) {
@@ -1527,11 +1504,7 @@ section {
     }
 }
 
-/* ============================================
-   LANDSCAPE MODE - ALL DEVICES
-   ============================================ */
 @media screen and (orientation: landscape) and (max-width: 1199px) {
-    /* Common landscape styles */
     .home {
         height: auto;
         min-height: 100vh;
@@ -1543,7 +1516,6 @@ section {
     }
 }
 
-/* Tablet Landscape Specific */
 @media screen and (min-width: 768px) and (max-width: 1199px) and (orientation: landscape) {
     .portrait {
         width: 25rem;
@@ -1561,7 +1533,6 @@ section {
     }
 }
 
-/* Mobile Landscape Specific */
 @media screen and (max-width: 767px) and (orientation: landscape) {
     :root {
         --grid-size: 30px;
